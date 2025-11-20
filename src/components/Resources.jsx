@@ -24,25 +24,32 @@ const Resources = () => {
         setLoading(false);
     };
 
+    // Cambiar de pestaña limpiando datos y marcando loading para evitar render con datos antiguos
+    const switchTab = (type) => {
+        setLoading(true);
+        setData([]);
+        setActiveTab(type);
+    };
+
     return (
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-6">Recursos Adicionales</h2>
 
             <div className="flex space-x-4 mb-6">
                 <button
-                    onClick={() => setActiveTab('photos')}
+                    onClick={() => switchTab('photos')}
                     className={`px-4 py-2 rounded ${activeTab === 'photos' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
                 >
                     Fotos
                 </button>
                 <button
-                    onClick={() => setActiveTab('countries')}
+                    onClick={() => switchTab('countries')}
                     className={`px-4 py-2 rounded ${activeTab === 'countries' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
                 >
                     Países
                 </button>
                 <button
-                    onClick={() => setActiveTab('users')}
+                    onClick={() => switchTab('users')}
                     className={`px-4 py-2 rounded ${activeTab === 'users' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
                 >
                     Usuarios
