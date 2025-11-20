@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getPhotos, getCountries, getUsers } from '../services/api';
+import { getPhotos, getCountries } from '../services/api';
 
 const Resources = () => {
     const [activeTab, setActiveTab] = useState('photos');
@@ -18,7 +18,7 @@ const Resources = () => {
             let result = [];
             if (type === 'photos') result = await getPhotos();
             if (type === 'countries') result = await getCountries();
-            if (type === 'users') result = await getUsers();
+            // usuarios removidos
             setData(result);
         } catch (error) {
             console.error("Error cargando recursos", error);
@@ -50,12 +50,7 @@ const Resources = () => {
                 >
                     Países
                 </button>
-                <button
-                    onClick={() => switchTab('users')}
-                    className={`px-4 py-2 rounded ${activeTab === 'users' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-                >
-                    Usuarios
-                </button>
+                {/* Pestaña de Usuarios eliminada */}
             </div>
 
             {loading ? (
@@ -76,14 +71,7 @@ const Resources = () => {
                         </div>
                     ))}
 
-                    {activeTab === 'users' && Array.isArray(data) && data.filter(u => typeof u?.name === 'string').map((user, idx) => (
-                        <div key={`user-${user.id ?? idx}`} className="bg-white p-4 rounded shadow border-l-4 border-purple-500">
-                            <h3 className="font-bold text-lg">{user.name}</h3>
-                            <p className="text-gray-600">{user.email}</p>
-                            <p className="text-sm text-gray-500">Usuario: {user.username}</p>
-                            <p className="text-sm text-gray-500">Ciudad: {user.city ?? '-'}</p>
-                        </div>
-                    ))}
+                    {/* Render de Usuarios eliminado */}
                 </div>
             )}
         </div>

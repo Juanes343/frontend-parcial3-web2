@@ -28,7 +28,4 @@ export const getCountries = async () => {
     return response.data;
 };
 
-export const getUsers = async () => {
-    const response = await axios.get(`${RESOURCES_URL}/users`);
-    return response.data;
-};
+// Usuarios removidos del proyecto
