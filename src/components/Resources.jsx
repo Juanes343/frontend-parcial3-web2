@@ -7,11 +7,13 @@ const Resources = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        // Limpiar datos y marcar loading antes de cargar la nueva pestaña
+        setLoading(true);
+        setData([]);
         loadData(activeTab);
     }, [activeTab]);
 
     const loadData = async (type) => {
-        setLoading(true);
         try {
             let result = [];
             if (type === 'photos') result = await getPhotos();
@@ -74,7 +76,7 @@ const Resources = () => {
                         </div>
                     ))}
 
-                    {activeTab === 'users' && data.map((user, idx) => (
+                    {activeTab === 'users' && Array.isArray(data) && data.filter(u => typeof u?.name === 'string').map((user, idx) => (
                         <div key={`user-${user.id ?? idx}`} className="bg-white p-4 rounded shadow border-l-4 border-purple-500">
                             <h3 className="font-bold text-lg">{user.name}</h3>
                             <p className="text-gray-600">{user.email}</p>
