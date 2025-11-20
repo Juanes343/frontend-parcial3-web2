@@ -68,10 +68,11 @@ const Resources = () => {
                     ))}
 
                     {activeTab === 'users' && data.map((user, idx) => (
-                        <div key={`user-${user.login?.uuid ?? idx}`} className="bg-white p-4 rounded shadow border-l-4 border-purple-500">
-                            <h3 className="font-bold text-lg">{`${user.name?.title} ${user.name?.first} ${user.name?.last}`}</h3>
+                        <div key={`user-${user.id ?? idx}`} className="bg-white p-4 rounded shadow border-l-4 border-purple-500">
+                            <h3 className="font-bold text-lg">{user.name}</h3>
                             <p className="text-gray-600">{user.email}</p>
-                            <p className="text-sm text-gray-500">Ciudad: {user.location?.city}</p>
+                            <p className="text-sm text-gray-500">Usuario: {user.username}</p>
+                            <p className="text-sm text-gray-500">Ciudad: {user.city ?? '-'}</p>
                         </div>
                     ))}
                 </div>
