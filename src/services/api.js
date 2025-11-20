@@ -1,7 +1,14 @@
 import axios from 'axios';
 
-const WIKIPEDIA_URL = 'http://localhost:5000/api/wikipedia';
-const RESOURCES_URL = 'http://localhost:5000/api/resources';
+// Base URL del backend: configurable por env y con fallback
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.PROD
+    ? 'https://backend-parcial3-web2.vercel.app'
+    : 'http://localhost:5000');
+
+const WIKIPEDIA_URL = `${API_BASE_URL}/api/wikipedia`;
+const RESOURCES_URL = `${API_BASE_URL}/api/resources`;
 
 // Eliminados los endpoints de Items en frontend
 
